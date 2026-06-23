@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Akira Reference Library</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>Akira</h1>
+          <p>YAML-driven reference library</p>
+        </div>
+        <div class="toolbar">
+          <label class="file-button">
+            Load YAML
+            <input id="yaml-file" type="file" accept=".yaml,.yml,text/yaml" />
+          </label>
+          <button id="copy-citation" type="button">Copy Citation</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="sidebar" aria-label="Library navigation">
+          <section>
+            <h2>Library</h2>
+            <button class="nav-item is-active" data-collection="all" type="button">
+              All Items <span id="all-count">0</span>
+            </button>
+          </section>
+          <section>
+            <h2>Collections</h2>
+            <div id="collections"></div>
+          </section>
+          <section>
+            <h2>Tags</h2>
+            <div id="tags" class="tag-list"></div>
+          </section>
+        </aside>
+
+        <section class="library-panel" aria-label="References">
+          <div class="search-row">
+            <input id="search" type="search" placeholder="Search title, author, venue, tag..." />
+            <select id="sort">
+              <option value="year-desc">Newest</option>
+              <option value="year-asc">Oldest</option>
+              <option value="title-asc">Title A-Z</option>
+              <option value="author-asc">Author A-Z</option>
+            </select>
+          </div>
+          <div id="item-list" class="item-list"></div>
+          <p id="empty-state" class="empty-state" hidden>No references match this view.</p>
+        </section>
+
+        <aside class="detail-panel" aria-label="Reference details">
+          <div id="detail"></div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+library:
+  collections:
+    - id: ai
+      name: AI Research
+    - id: hci
+      name: Human-Computer Interaction
+    - id: systems
+      name: Systems
+  items:
+    - id: attention-is-all-you-need
+      type: paper
+      title: Attention Is All You Need
+      authors:
+        - Ashish Vaswani
+        - Noam Shazeer
+        - Niki Parmar
+        - Jakob Uszkoreit
+        - Llion Jones
+        - Aidan N. Gomez
+        - Lukasz Kaiser
+        - Illia Polosukhin
+      year: 2017
+      venue: NeurIPS
+      collection: ai
+      tags:
+        - transformer
+        - neural networks
+        - sequence modeling
+      doi: 10.48550/arXiv.1706.03762
+      url: https://arxiv.org/abs/1706.03762
+      abstract: Introduces the Transformer architecture based entirely on attention mechanisms.
+      attachments:
+        - label: arXiv
+          url: https://arxiv.org/pdf/1706.03762
+      notes:
+        - Baseline paper for modern language model architecture.
+        - Useful citation for attention and encoder-decoder discussions.
+    - id: design-space-data-vis
+      type: paper
+      title: A Nested Model for Visualization Design and Validation
+      authors:
+        - Tamara Munzner
+      year: 2009
+      venue: IEEE Transactions on Visualization and Computer Graphics
+      collection: hci
+      tags:
+        - visualization
+        - design
+        - validation
+      doi: 10.1109/TVCG.2009.111
+      abstract: Defines a nested model for thinking about visualization design choices and validation.
+      notes:
+        - Good framework paper for evaluating visualization systems.
+    - id: mapreduce
+      type: paper
+      title: "MapReduce: Simplified Data Processing on Large Clusters"
+      authors:
+        - Jeffrey Dean
+        - Sanjay Ghemawat
+      year: 2004
+      venue: OSDI
+      collection: systems
+      tags:
+        - distributed systems
+        - data processing
+      url: https://research.google/pubs/mapreduce-simplified-data-processing-on-large-clusters/
+      abstract: Presents a programming model and runtime for large-scale data processing.
+      attachments:
+        - label: Publisher page
+          url: https://research.google/pubs/mapreduce-simplified-data-processing-on-large-clusters/
+    - id: direct-manipulation
+      type: article
+      title: Direct Manipulation Interfaces
+      authors:
+        - Ben Shneiderman
+      year: 1983
+      venue: IEEE Computer
+      collection: hci
+      tags:
+        - interaction
+        - interface
+      abstract: Early articulation of direct manipulation as a core interface style.
+      notes:
+        - Useful historical reference for UI principles.
