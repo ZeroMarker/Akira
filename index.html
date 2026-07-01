@@ -3,22 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Akira Reference Library</title>
+    <title>Akira Library</title>
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
     <div class="app-shell">
       <header class="topbar">
-        <div>
-          <h1>Akira</h1>
-          <p>YAML-driven reference library</p>
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">A</span>
+          <div>
+            <h1>Akira Library</h1>
+            <p id="source-status">Loading YAML source...</p>
+          </div>
         </div>
         <div class="toolbar">
           <label class="file-button">
+            <span aria-hidden="true">+</span>
             Load YAML
             <input id="yaml-file" type="file" accept=".yaml,.yml,text/yaml" />
           </label>
-          <button id="copy-citation" type="button">Copy Citation</button>
+          <button id="copy-citation" type="button" title="Copy citation">
+            <span aria-hidden="true">[]</span>
+            Copy Citation
+          </button>
         </div>
       </header>
 
@@ -27,7 +34,13 @@
           <section>
             <h2>Library</h2>
             <button class="nav-item is-active" data-collection="all" type="button">
-              All Items <span id="all-count">0</span>
+              <span>My Library</span><strong id="all-count">0</strong>
+            </button>
+            <button class="nav-item" data-special="recent" type="button">
+              <span>Recently Added</span><strong id="recent-count">0</strong>
+            </button>
+            <button class="nav-item" data-special="unfiled" type="button">
+              <span>Unfiled Items</span><strong id="unfiled-count">0</strong>
             </button>
           </section>
           <section>
@@ -48,19 +61,32 @@
               <option value="year-asc">Oldest</option>
               <option value="title-asc">Title A-Z</option>
               <option value="author-asc">Author A-Z</option>
+              <option value="added-desc">Recently Added</option>
             </select>
+          </div>
+          <div class="table-head" aria-hidden="true">
+            <span>Title</span>
+            <span>Creator</span>
+            <span>Year</span>
+            <span>Type</span>
           </div>
           <div id="item-list" class="item-list"></div>
           <p id="empty-state" class="empty-state" hidden>No references match this view.</p>
         </section>
 
         <aside class="detail-panel" aria-label="Reference details">
+          <div class="detail-tabs" role="tablist" aria-label="Detail sections">
+            <button class="is-active" data-tab="info" type="button">Info</button>
+            <button data-tab="abstract" type="button">Abstract</button>
+            <button data-tab="notes" type="button">Notes</button>
+            <button data-tab="attachments" type="button">Files</button>
+          </div>
           <div id="detail"></div>
         </aside>
       </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="./vendor/js-yaml.min.js"></script>
     <script type="module" src="./src/app.js"></script>
   </body>
 </html>

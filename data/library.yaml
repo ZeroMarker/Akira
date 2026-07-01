@@ -20,8 +20,11 @@ library:
         - Lukasz Kaiser
         - Illia Polosukhin
       year: 2017
+      date: 2017-06-12
+      dateAdded: 2026-06-30
       venue: NeurIPS
-      collection: ai
+      collections:
+        - ai
       tags:
         - transformer
         - neural networks
@@ -41,8 +44,13 @@ library:
       authors:
         - Tamara Munzner
       year: 2009
+      dateAdded: 2026-06-28
       venue: IEEE Transactions on Visualization and Computer Graphics
-      collection: hci
+      volume: 15
+      issue: 6
+      pages: 921-928
+      collections:
+        - hci
       tags:
         - visualization
         - design
@@ -58,8 +66,11 @@ library:
         - Jeffrey Dean
         - Sanjay Ghemawat
       year: 2004
+      dateAdded: 2026-06-25
       venue: OSDI
-      collection: systems
+      collections:
+        - systems
+        - ai
       tags:
         - distributed systems
         - data processing
@@ -74,8 +85,13 @@ library:
       authors:
         - Ben Shneiderman
       year: 1983
+      dateAdded: 2026-06-18
       venue: IEEE Computer
-      collection: hci
+      volume: 16
+      issue: 8
+      pages: 57-69
+      collections:
+        - hci
       tags:
         - interaction
         - interface

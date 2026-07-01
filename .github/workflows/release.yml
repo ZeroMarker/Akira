@@ -1,0 +1,78 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ${{ matrix.name }}
+    runs-on: ${{ matrix.platform }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: linux-x64
+            platform: ubuntu-22.04
+            args: ''
+          - name: windows-x64
+            platform: windows-latest
+            args: ''
+          - name: macos-arm64
+            platform: macos-latest
+            args: '--target aarch64-apple-darwin'
+            rustTargets: 'aarch64-apple-darwin'
+          - name: macos-x64
+            platform: macos-latest
+            args: '--target x86_64-apple-darwin'
+            rustTargets: 'x86_64-apple-darwin'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install Rust
+        if: ${{ !startsWith(matrix.name, 'macos-') }}
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Rust with macOS target
+        if: ${{ startsWith(matrix.name, 'macos-') }}
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.rustTargets }}
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+
+      - name: Install Linux dependencies
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf xdg-utils
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build and publish Tauri release
+        uses: tauri-apps/tauri-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: 'Akira Library ${{ github.ref_name }}'
+          releaseBody: 'See the assets below to download and install this release.'
+          releaseDraft: false
+          prerelease: ${{ contains(github.ref_name, '-') }}
+          args: ${{ matrix.args }}
